@@ -1,5 +1,4 @@
-# THIS FILE IS AUTOMATICALLY DISTRIBUTED BY PUPPET.  ANY CHANGES WILL BE
-# OVERWRITTEN.
+# THIS FILE IS AUTOMATICALLY DISTRIBUTED BY PUPPET. ANY CHANGES WILL BE OVERWRITTEN.
 
 <%
   opts = []
@@ -44,6 +43,7 @@
     value = scope.to_hash[key]
     opts << "#{key} #{value}" if value != 'undef'
   end
+
 -%>
 <%= rpath %> {
 <% opts.sort_by{|key,value| key}.each do |opt| -%>
@@ -51,32 +51,26 @@
 <% end -%>
 <% if @postrotate != 'undef' -%>
   postrotate
-  <%- @postrotate = [@postrotate] unless @postrotate.is_a?(Array) -%>
-  <%- @postrotate.each do |val| -%>
+  <%- @postrotate = [@postrotate] unless @postrotate.is_a?(Array) -%><%- @postrotate.each do |val| -%>
     <%= val %>
-  <%- end -%>
+    <%- end -%>
   endscript
 <% end -%>
 <% if @prerotate != 'undef' -%>
   prerotate
-  <%- @prerotate = [@prerotate] unless @prerotate.is_a?(Array) -%>
-  <%- @prerotate.each do |val| -%>
+  <%- @prerotate = [@prerotate] unless @prerotate.is_a?(Array) -%><%- @prerotate.each do |val| -%>
     <%= val %>
   <%- end -%>
   endscript
 <% end -%>
 <% if @firstaction != 'undef' -%>
-  firstaction
-  <%- @firstaction = [@firstaction] unless @firstaction.is_a?(Array) -%>
-  <%- @firstaction.each do |val| -%>
+  firstaction<%- @firstaction = [@firstaction] unless @firstaction.is_a?(Array) -%><%- @firstaction.each do |val| -%>
     <%= val %>
   <%- end -%>
   endscript
 <% end -%>
 <% if @lastaction != 'undef' -%>
-  lastaction
-  <%- @lastaction = [@lastaction] unless @lastaction.is_a?(Array) -%>
-  <%- @lastaction.each do |val| -%>
+  lastaction<%- @lastaction = [@lastaction] unless @lastaction.is_a?(Array) -%><%- @lastaction.each do |val| -%>
     <%= val %>
   <%- end -%>
   endscript

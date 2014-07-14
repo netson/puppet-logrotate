@@ -344,9 +344,17 @@ define logrotate::rule(
     }
   }
 
+  # check su usage for ubuntu
   case $su {
     'undef',false: {}
-    true: { $sane_su = 'su' }
+    true: {
+      if ($::lsbmajdistrelease == '12') and ($::operatingsystem == "Ubuntu") {
+        $sane_su = false
+      }
+      else {
+        $sane_su = 'su'
+      }
+    }
     default: {
       fail("Logrotate::Rule[${name}]: su must be a boolean")
     }
